@@ -129,7 +129,7 @@ getDiaries = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `Diary not found` })
         }
-        return res.status(200).json({ success: true, data: diaries })//diary ? diaries
+        return res.status(200).json({ success: true, data: diaries })
     }).catch(err => console.log(err))
 }
 
