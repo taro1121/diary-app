@@ -51,8 +51,25 @@ updateDiary = async (req, res) => {
             })
         }
         diary.date = body.date
-        diary.item1 = body.item1
-        diary.value = body.value
+
+        diary.item1.description = body.item1.description
+        diary.item1.value = body.item1.value
+
+        diary.item2.description = body.item2.description
+        diary.item2.value = body.item2.value
+
+        diary.item3.description = body.item3.description
+        diary.item3.value = body.item3.value
+
+        diary.item4.description = body.item4.description
+        diary.item4.value = body.item4.value
+
+        diary.item5.description = body.item5.description
+        diary.item5.value = body.item5.value
+
+        diary.item6.description = body.item6.description
+        diary.item6.value = body.item6.value
+
         diary
             .save()
             .then(() => {
