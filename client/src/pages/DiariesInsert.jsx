@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-// import api from '../api'
-// import { validateAll } from 'indicative/validator'
+import api from '../api'
 
 import styled from 'styled-components'
+
 
 const Title = styled.h1.attrs({
     className: 'h1',
@@ -37,6 +37,10 @@ const CancelButton = styled.a.attrs({
 `
 
 
+
+
+
+
 class DiariesInsert extends Component {
     constructor(props) {
         super(props)
@@ -63,6 +67,35 @@ class DiariesInsert extends Component {
         }
     }
 
+    handleChangeInputDate = async event => {
+        const date = event.target.value
+        this.setState({ date })
+    }
+
+    handleChangeInputItem1Description = async event => {
+        const item1Description = event.target.value
+        this.setState({ item1Description })
+    }
+
+    handleChangeInputItem1Value = async event => {
+        const item1Value = event.target.value
+        this.setState({ item1Value })
+    }
+
+    handleIncludeDiary = async () => {
+        const { date, item1Description, item1Value } = this.state
+        const payload = { date, item1Description, item1Value }
+
+        await api.insertDiary(payload).then(res => {
+            window.alert(`Entry inserted successfully`)
+            this.setState({
+                date: '',
+                item1Description: '',
+                item1Value: ''
+            })
+        })
+    }
+
     render() {
         const {date, item1Description, item1Value} = this.state
         // const {date, item1: { description, value }, item2: { description, value }, item3: { description, value }, item4: { description, value }, item5: { description, value }, item6: { description, value } } = this.state
@@ -73,29 +106,32 @@ class DiariesInsert extends Component {
 
             <Label>Date: </Label>
             <InputText
-                type="text"
+                type="date"
                 value={date}
+                onChange={this.handleChangeInputDate}
             />
 
             <Label>Item1 description: </Label>
             <InputText
                 type="text"
                 value={item1Description}
+                onChange={this.handleChangeInputItem1Description}
             />
 
             <Label>Item1 value: </Label>
             <InputText
                 type="number"
-                step="0.1"
+                step="1"
                 lang="en-US"
-                min="0"
-                max="10"
+                min="-5"
+                max="+5"
                 pattern="[0-9]+([,\.][0-9]+)?"
                 value={item1Value}
+                onChange={this.handleChangeInputItem1Value}
             />
 
-            <Button>Add Entry</Button>
-            <CancelButton href={'/diaries/list'}>Cancel</CancelButton>
+            <Button onClick={this.handleIncludeDiary}>Add Entry</Button>
+            <CancelButton href={'/'}>Cancel</CancelButton>
         </Wrapper>
         )
     }

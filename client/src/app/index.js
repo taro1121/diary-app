@@ -14,7 +14,6 @@ function App() {
                     <Route path="/home" exact component={ List } />
                     {/* <Route path="/edit" exact component={ Edit } /> */}
                 </Switch>
-            <Footer />
         </Router>
     )
 }

@@ -1,2 +1,9 @@
-/server/node_modules
-/client/node_modules
+#Ignore by extinsion (*.test)
+
+#Ignore by file name (/test.log)
+/package-lock.json
+
+
+#Ignore by directory (/folder/)
+/server/node_modules/
+/client/node_modules/

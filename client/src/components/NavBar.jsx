@@ -16,9 +16,9 @@ class NavBar extends Component {
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="entry">Entry</a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-                <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                <a class="nav-item nav-link" href="/diaries/create">Entry</a>
+                {/* <a class="nav-item nav-link" href="#">Pricing</a> */}
+                {/* <a class="nav-item nav-link disabled" href="#">Disabled</a> */}
               </div>
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
             </div>
