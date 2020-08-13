@@ -98,7 +98,7 @@ class DiariesInsert extends Component {
 
     render() {
         const {date, item1Description, item1Value} = this.state
-        // const {date, item1: { description, value }, item2: { description, value }, item3: { description, value }, item4: { description, value }, item5: { description, value }, item6: { description, value } } = this.state
+        // const {date, item1 [ { description, value },] item2: { description, value }, item3: { description, value }, item4: { description, value }, item5: { description, value }, item6: { description, value } } = this.state
 
         return (
             <Wrapper>

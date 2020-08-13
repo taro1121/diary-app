@@ -8,6 +8,10 @@ const Diary = new Schema(
         item1Description:  {type: String, required: true},
         item1Value: {type: Number, required: true}
         },
+
+
+
+        
     {timestamps: true}
     
     // {
