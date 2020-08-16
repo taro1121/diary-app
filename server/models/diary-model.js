@@ -27,5 +27,4 @@ const Diary = new Schema(
     {timestamps: true}
 )
 
-
 module.exports = mongoose.model('entries', Diary)
