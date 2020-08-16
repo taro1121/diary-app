@@ -37,33 +37,30 @@ const CancelButton = styled.a.attrs({
 `
 
 
-
-
-
-
 class DiariesInsert extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
             date: '',
-            item1Description: '',
-            item1Value: ''
-            // item2: {
-            //     description: '',
-            //     value: ''},
-            // item3: {
-            //     description: '',
-            //     value: ''},
-            // item4: {
-            //     description: '',
-            //     value: ''},
-            // item5: {
-            //     description: '',
-            //     value: ''},
-            // item6: {
-            //     description: '',
-            //     value: ''}
+            items: [
+                {
+                    desc: '',
+                    value: ''
+                },
+                {
+                    desc: '',
+                    value: ''
+                },
+                {
+                    desc: '',
+                    value: ''
+                },
+                {
+                    desc: '',
+                    value: ''
+                }
+            ]
         }
     }
 
@@ -74,30 +71,30 @@ class DiariesInsert extends Component {
 
     handleChangeInputItem1Description = async event => {
         const item1Description = event.target.value
-        this.setState({ item1Description })
+        this.setState({ $items:[0].desc })
     }
 
     handleChangeInputItem1Value = async event => {
         const item1Value = event.target.value
-        this.setState({ item1Value })
+        this.setState({ items:[0].value })
     }
 
     handleIncludeDiary = async () => {
         const { date, item1Description, item1Value } = this.state
-        const payload = { date, item1Description, item1Value }
+        const payload = { date, items:[0].desc, items:[0].value }
 
         await api.insertDiary(payload).then(res => {
             window.alert(`Entry inserted successfully`)
             this.setState({
                 date: '',
-                item1Description: '',
-                item1Value: ''
+                items:[0].{desc: ''},
+                items:[0].{value: ''}
             })
         })
     }
 
     render() {
-        const {date, item1Description, item1Value} = this.state
+        const {date, items:[].desc, items:[].value} = this.state
         // const {date, item1 [ { description, value },] item2: { description, value }, item3: { description, value }, item4: { description, value }, item5: { description, value }, item6: { description, value } } = this.state
 
         return (
@@ -114,7 +111,7 @@ class DiariesInsert extends Component {
             <Label>Item1 description: </Label>
             <InputText
                 type="text"
-                value={item1Description}
+                value={items[].desc}
                 onChange={this.handleChangeInputItem1Description}
             />
 
@@ -126,7 +123,7 @@ class DiariesInsert extends Component {
                 min="-5"
                 max="+5"
                 pattern="[0-9]+([,\.][0-9]+)?"
-                value={item1Value}
+                value={items[].value}
                 onChange={this.handleChangeInputItem1Value}
             />
 
