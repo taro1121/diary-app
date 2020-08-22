@@ -5,14 +5,14 @@ const api = axios.create({
 })
 
 export const insertDiary = payload => api.post(`/diaries/create`, payload)
-export const getLastFiveDiaries = () => api.get(`/diaries`)
+export const getAllDiaries = () => api.get(`/diaries`)
 export const updateDiaryById = (id, payload) => api.put(`/diary/${id}`, payload)
 export const deleteDiaryById = id => api.delete(`/diary/${id}`)
 export const getDiaryById = id => api.get(`/diary/${id}`)
 
 const apis = {
     insertDiary,
-    getLastFiveDiaries,
+    getAllDiaries,
     updateDiaryById,
     deleteDiaryById,
     getDiaryById,

@@ -43,59 +43,44 @@ class DiariesInsert extends Component {
 
         this.state = {
             date: '',
-            items: [
-                {
-                    desc: '',
-                    value: ''
-                },
-                {
-                    desc: '',
-                    value: ''
-                },
-                {
-                    desc: '',
-                    value: ''
-                },
-                {
-                    desc: '',
-                    value: ''
-                }
-            ]
+            item1Desc: '',
+            item1Value: ''
         }
     }
 
     handleChangeInputDate = async event => {
         const date = event.target.value
-        this.setState({ date })
+        this.setState({date})
     }
 
     handleChangeInputItem1Description = async event => {
-        const item1Description = event.target.value
-        this.setState({ $items:[0].desc })
+        const item1Desc = event.target.value
+        this.setState({item1Desc})
     }
 
     handleChangeInputItem1Value = async event => {
         const item1Value = event.target.value
-        this.setState({ items:[0].value })
+        this.setState({item1Value})
     }
 
     handleIncludeDiary = async () => {
-        const { date, item1Description, item1Value } = this.state
-        const payload = { date, items:[0].desc, items:[0].value }
+        const {date, item1Desc, item1Value} = this.state
+        const payload = {date, item1Desc, item1Value}
 
         await api.insertDiary(payload).then(res => {
             window.alert(`Entry inserted successfully`)
-            this.setState({
-                date: '',
-                items:[0].{desc: ''},
-                items:[0].{value: ''}
-            })
+            this.setState(
+                {
+                date:'',
+                item1Desc: '',
+                item1Value: '',
+                }
+            )
         })
     }
 
     render() {
-        const {date, items:[].desc, items:[].value} = this.state
-        // const {date, item1 [ { description, value },] item2: { description, value }, item3: { description, value }, item4: { description, value }, item5: { description, value }, item6: { description, value } } = this.state
+        const {date, item1Desc, item1Value } = this.state
 
         return (
             <Wrapper>
@@ -104,14 +89,14 @@ class DiariesInsert extends Component {
             <Label>Date: </Label>
             <InputText
                 type="date"
-                value={date}
+                value={ date }
                 onChange={this.handleChangeInputDate}
             />
 
             <Label>Item1 description: </Label>
             <InputText
                 type="text"
-                value={items[].desc}
+                value={item1Desc}
                 onChange={this.handleChangeInputItem1Description}
             />
 
@@ -123,7 +108,7 @@ class DiariesInsert extends Component {
                 min="-5"
                 max="+5"
                 pattern="[0-9]+([,\.][0-9]+)?"
-                value={items[].value}
+                value={item1Value}
                 onChange={this.handleChangeInputItem1Value}
             />
 
