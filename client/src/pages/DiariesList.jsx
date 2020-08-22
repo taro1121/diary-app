@@ -1,9 +1,36 @@
+// import React, { Component } from 'react'
+
+
+// // import React, { Component } from 'react'
+// import ReactTable from 'react-table'
+// import api from '../api'
+
+// import styled from 'styled-components'
+// import 'react-table/react-table.css'
+
+
+
+
+// class DiariesList extends Component {
+//     render() {
+//         return (
+//             <div>
+//                 <p>In this page you'll see the list of Diaries</p>
+//             </div>
+//         )
+//     }
+// }
+
+// export default DiariesList
+
+
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
 
 import styled from 'styled-components'
 import 'react-table/react-table.css'
+
 
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
@@ -67,7 +94,6 @@ class DiariesList extends Component {
             this.setState({
                 diaries: diaries.data.data,
                 isLoading: false,
-                
             })
         })
     }
@@ -94,7 +120,8 @@ class DiariesList extends Component {
             {
                 Header: 'item1Value',
                 accessor: 'item1Value',
-                Cell: props => <span>{props.value.join(' / ')}</span>,
+                filterable: true,
+                // Cell: props => <span>{props.value.join(' / ')}</span>,
             },
             {
                 Header: '',

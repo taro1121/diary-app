@@ -12,7 +12,7 @@ function App() {
                 <Switch>
                     <Route path="/diaries/create" exact component={DiariesInsert} />
                     <Route path="/diaries/list" exact component={DiariesList} />
-                    {/* <Route path="/edit" exact component={ Edit } /> */}
+                    {/* <Route path="/edit" exact component={Edit} /> */}
                 </Switch>
         </Router>
     )
