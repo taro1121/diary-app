@@ -1,29 +1,3 @@
-// import React, { Component } from 'react'
-
-
-// // import React, { Component } from 'react'
-// import ReactTable from 'react-table'
-// import api from '../api'
-
-// import styled from 'styled-components'
-// import 'react-table/react-table.css'
-
-
-
-
-// class DiariesList extends Component {
-//     render() {
-//         return (
-//             <div>
-//                 <p>In this page you'll see the list of Diaries</p>
-//             </div>
-//         )
-//     }
-// }
-
-// export default DiariesList
-
-
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
@@ -92,7 +66,7 @@ class DiariesList extends Component {
 
         await api.getAllDiaries().then(diaries => {
             this.setState({
-                diaries: diaries.data.data,
+                diaries: diaries.data,
                 isLoading: false,
             })
         })
@@ -100,6 +74,10 @@ class DiariesList extends Component {
 
     render() {
         const { diaries, isLoading } = this.state
+        console.log('PRINTING DIARIES ARRAY')
+        console.log(diaries)
+        console.log('PRINTING DIARIES ARRAY Length')
+        console.log('printing diaries.data.length:' + diaries.data.length)
 
         const columns = [
             {
@@ -146,6 +124,8 @@ class DiariesList extends Component {
                 },
             },
         ]
+        console.log('diaries.data.length')
+        // console.log(diaries.data.length)
 
         let showTable = true
         if (!diaries.length) {
