@@ -67,6 +67,7 @@ class DiariesList extends Component {
             this.setState({
                 diaries: diaries.data.data,
                 isLoading: false,
+                
             })
         })
     }
