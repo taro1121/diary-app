@@ -93,7 +93,7 @@ class DiariesList extends Component {
             {
                 Header: 'item1Value',
                 accessor: 'item1Value',
-                Cell: props => <span>{props.value.join(' / ')}</span>,
+                //Cell: props => <span>{props.value.join(' / ')}</span>,
             },
             {
                 Header: '',
