@@ -64,9 +64,9 @@ class DiariesList extends Component {
     componentDidMount = async () => {
         this.setState({ isLoading: true })
 
-        await api.getAllDiaries().then(diaries => {
+        await api.getAllDiaries().then(res => {
             this.setState({
-                diaries: diaries.data,
+                diaries: res.data.data,
                 isLoading: false,
             })
         })
@@ -74,17 +74,17 @@ class DiariesList extends Component {
 
     render() {
         const { diaries, isLoading } = this.state
-        console.log('PRINTING DIARIES ARRAY')
-        console.log(diaries)
-        console.log('PRINTING DIARIES ARRAY Length')
-        console.log('printing diaries.data.length:' + diaries.data.length)
+        // console.log('PRINTING DIARIES ARRAY')
+        // console.log(diaries)
+        // console.log('PRINTING DIARIES ARRAY Length')
+        // console.log('printing diaries.data.length:' + diaries.data.length)
 
         const columns = [
-            {
-                Header: 'ID',
-                accessor: '_id',
-                filterable: true,
-            },
+            // {
+            //     Header: 'ID',
+            //     accessor: '_id',
+            //     filterable: true,
+            // },
             {
                 Header: 'Date',
                 accessor: 'date',
@@ -124,8 +124,8 @@ class DiariesList extends Component {
                 },
             },
         ]
-        console.log('diaries.data.length')
-        // console.log(diaries.data.length)
+        // console.log('diaries.data.length')
+        // console.log(diaries.data.data.length)
 
         let showTable = true
         if (!diaries.length) {

@@ -18,13 +18,11 @@ class NavBar extends Component {
               <div className="navbar-nav">
                 <a className="nav-item nav-link active" href="/">Home <span className="sr-only">(current)</span></a>
                 <a className="nav-item nav-link" href="/diaries/create">Entry</a>
-                {/* <a className="nav-item nav-link" href="#">Pricing</a> */}
+                <a className="nav-item nav-link" href="/diaries/list">List</a>
                 {/* <a className="nav-item nav-link disabled" href="#">Disabled</a> */}
               </div>
-              <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+              {/* <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button> */}
             </div>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-          </div>
         </nav>
       </div>
     )
