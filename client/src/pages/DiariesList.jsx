@@ -10,6 +10,14 @@ const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
 `
 
+const Title = styled.h1.attrs({
+    className: 'h1',
+})``
+
+const SubTitle = styled.h5.attrs({
+    className: 'h5',
+})``
+
 const Update = styled.div`
     color: #ef9b0f;
     cursor: pointer;
@@ -89,21 +97,25 @@ class DiariesList extends Component {
                 Header: 'Date',
                 accessor: 'date',
                 filterable: true,
+                width: '110',
             },
             {
                 Header: 'item1Desc',
                 accessor: 'item1Desc',
                 filterable: true,
+                width: '1000',
             },
             {
                 Header: 'item1Value',
                 accessor: 'item1Value',
                 filterable: true,
+                width: '100',
                 // Cell: props => <span>{props.value.join(' / ')}</span>,
             },
             {
                 Header: '',
                 accessor: '',
+                width: '100',
                 Cell: function(props) {
                     return (
                         <span>
@@ -115,6 +127,7 @@ class DiariesList extends Component {
             {
                 Header: '',
                 accessor: '',
+                width: '100',
                 Cell: function(props) {
                     return (
                         <span>
@@ -134,6 +147,8 @@ class DiariesList extends Component {
 
         return (
             <Wrapper>
+                <Title>Diary List</Title>
+                <SubTitle>List of entries in chronological order.</SubTitle>
                 {showTable && (
                     <ReactTable
                         data={diaries}

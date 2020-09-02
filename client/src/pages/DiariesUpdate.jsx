@@ -62,7 +62,12 @@ class DiariesUpdate extends Component {
 
     handleChangeInputItem1Value = async event => {
         const item1Value = event.target.value
-        this.setState({ item1Value })
+        if ((item1Value < -5) || (item1Value > 5)) {    
+            window.alert(`Value has to be between -5 and +5`)
+            this.setState({item1Value: ''})
+        } else {
+            this.setState({item1Value})
+        }
     }
 
     handleUpdateDiary = async () => {

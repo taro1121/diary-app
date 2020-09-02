@@ -8,6 +8,10 @@ const Title = styled.h1.attrs({
     className: 'h1',
 })``
 
+const SubTitle = styled.h5.attrs({
+    className: 'h5',
+})``
+
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
@@ -60,12 +64,28 @@ class DiariesInsert extends Component {
 
     handleChangeInputItem1Value = async event => {
         const item1Value = event.target.value
-        this.setState({item1Value})
+        // if (-5 < item1Value < 5) {
+        if ((item1Value < -5) || (item1Value > 5)) {    
+            window.alert(`Value has to be between -5.0 and +5.0`)
+            this.setState({item1Value: ''})
+        } else {
+            this.setState({item1Value})
+        }
     }
 
     handleIncludeDiary = async () => {
-        const {date, item1Desc, item1Value} = this.state
-        const payload = {date, item1Desc, item1Value}
+        // if ((item1Value == '') || (item1Desc == '') || (date == '')) {
+        //     window.alert(`All three fields have to be filled.`)
+        //     this.setState(
+        //         {
+        //         date:'',
+        //         item1Desc: '',
+        //         item1Value: '',
+        //         })
+        // } else {
+            const {date, item1Desc, item1Value} = this.state
+            const payload = {date, item1Desc, item1Value}
+        // }
 
         await api.insertDiary(payload).then(res => {
             window.alert(`Entry inserted successfully`)
@@ -85,7 +105,9 @@ class DiariesInsert extends Component {
         return (
             <Wrapper>
             <Title>Create Entry</Title>
-
+            <SubTitle>Enter Date, Description, and Value (from -5.0 to +5.0) to represent the day.
+            </SubTitle>
+            
             <Label>Date: </Label>
             <InputText
                 type="date"
@@ -105,9 +127,9 @@ class DiariesInsert extends Component {
                 type="number"
                 step="1"
                 lang="en-US"
-                min="-5"
-                max="+5"
-                pattern="[0-9]+([,\.][0-9]+)?"
+                min="-5.0"
+                max="+5.0"
+                // pattern="[0-9]+([,\.][0-9]+)?"
                 value={item1Value}
                 onChange={this.handleChangeInputItem1Value}
             />
