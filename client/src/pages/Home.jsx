@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import {Chart, List} from '../components'
 
 import styled from 'styled-components'
 import 'react-table/react-table.css'
@@ -59,7 +61,7 @@ class DeleteDiary extends Component {
     }
 }
 
-class List extends Component {
+class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -74,7 +76,7 @@ class List extends Component {
 
         await api.getAllDiaries().then(res => {
             this.setState({
-                diaries: res.data.data.sort((a,b) => new Date(b.date) - new Date(a.date)),
+                diaries: res.data.data,
                 isLoading: false,
             })
         })
@@ -82,17 +84,8 @@ class List extends Component {
 
     render() {
         const { diaries, isLoading } = this.state
-        // console.log('PRINTING DIARIES ARRAY')
-        // console.log(diaries)
-        // console.log('PRINTING DIARIES ARRAY Length')
-        // console.log('printing diaries.data.length:' + diaries.data.length)
 
         const columns = [
-            // {
-            //     Header: 'ID',
-            //     accessor: '_id',
-            //     filterable: true,
-            // },
             {
                 Header: 'Date',
                 accessor: 'date',
@@ -110,7 +103,6 @@ class List extends Component {
                 accessor: 'item1Value',
                 filterable: true,
                 width: '100',
-                // Cell: props => <span>{props.value.join(' / ')}</span>,
             },
             {
                 Header: '',
@@ -137,31 +129,24 @@ class List extends Component {
                 },
             },
         ]
-        // console.log('diaries.data.length')
-        // console.log(diaries.data.data.length)
 
         let showTable = true
         if (!diaries.length) {
             showTable = false
         }
 
+        let showChart = true
+        if (!diaries.length) {
+            showChart = false
+        }
+
         return (
             <Wrapper>
-                <Title>Diary List</Title>
-                <SubTitle>List of entries in chronological order.</SubTitle>
-                {showTable && (
-                    <ReactTable
-                        data={diaries}
-                        columns={columns}
-                        loading={isLoading}
-                        defaultPageSize={10}
-                        showPageSizeOptions={true}
-                        minRows={0}
-                    />
-                )}
+                <Chart />
+                <List />
             </Wrapper>
         )
     }
 }
 
-export default List
+export default Home
