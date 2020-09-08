@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import ReactTable from 'react-table'
 import api from '../api'
+import {Chart, List} from '../components'
 import 'react-table/react-table.css'
-import {Wrapper, Title, SubTitle, Update, Delete} from '../styles'
+import {Wrapper, Update, Delete} from '../styles'
 
 class UpdateDiary extends Component {
     updateUser = event => {
@@ -23,7 +23,6 @@ class DeleteDiary extends Component {
         if (
             window.confirm(
                 `Do tou want to delete the diary entry ${this.props.id} permanently?`,
-                // `Do tou want to delete the diary entry permanently?`,
             )
         ) {
             api.deleteDiaryById(this.props.id)
@@ -36,7 +35,7 @@ class DeleteDiary extends Component {
     }
 }
 
-class List extends Component {
+class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -51,7 +50,7 @@ class List extends Component {
 
         await api.getAllDiaries().then(res => {
             this.setState({
-                diaries: res.data.data.sort((a,b) => new Date(b.date) - new Date(a.date)),
+                diaries: res.data.data,
                 isLoading: false,
             })
         })
@@ -61,11 +60,6 @@ class List extends Component {
         const { diaries, isLoading } = this.state
 
         const columns = [
-            // {
-            //     Header: 'ID',
-            //     accessor: '_id',
-            //     filterable: true,
-            // },
             {
                 Header: 'Date',
                 accessor: 'date',
@@ -83,19 +77,6 @@ class List extends Component {
                 accessor: 'item1Value',
                 filterable: true,
                 width: '100',
-                // Cell: props => <span>{props.value.join(' / ')}</span>,
-            },
-            {
-                Header: '',
-                accessor: '',
-                width: '100',
-                Cell: function(props) {
-                    return (
-                        <span>
-                            <UpdateDiary id={props.original._id} />
-                        </span>
-                    )
-                },
             },
             {
                 Header: '',
@@ -109,6 +90,18 @@ class List extends Component {
                     )
                 },
             },
+            {
+                Header: '',
+                accessor: '',
+                width: '100',
+                Cell: function(props) {
+                    return (
+                        <span>
+                            <UpdateDiary id={props.original._id} />
+                        </span>
+                    )
+                },
+            },
         ]
 
         let showTable = true
@@ -116,22 +109,17 @@ class List extends Component {
             showTable = false
         }
 
+        let showChart = true
+        if (!diaries.length) {
+            showChart = false
+        }
+
         return (
             <Wrapper>
-                <Title>Diary List</Title>
-                <SubTitle>List of diary entries in chronological order.</SubTitle>
-                {showTable && (
-                    <ReactTable
-                        data={diaries}
-                        columns={columns}
-                        loading={isLoading}
-                        defaultPageSize={10}
-                        showPageSizeOptions={true}
-                        minRows={0}
-                    />
-                )}
+                <Chart />
+                <List />
             </Wrapper>
         )
     }
 }
-export default List
+export default Home

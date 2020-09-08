@@ -1,7 +1,8 @@
-import NavBar from './NavBar'
-import Logo from './Logo'
+import NaviBar from './NaviBar'
+import Links from './Links'
 import Entry from './Entry'
 import List from './List'
-import Footer from './Footer'
+import Chart from './Chart'
+import Update from './Update'
 
-export { NavBar, Logo, Entry, List, Footer }
+export { Entry, List, NaviBar, Links, Chart, Update }

@@ -81,7 +81,7 @@ updateDiary = async (req, res) => {
             .catch(error => {
                 return res.status(404).json({
                     error,
-                    message: 'Entry not updated!',
+                    message: 'Diary not updated!',
                 })
             })
     })
@@ -128,7 +128,8 @@ getDiaries = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `Diary not found` })
         }
-        return res.status(200).json({ success: true, data: diaries })
+        // return res.status(200).json({ success: true, data: diaries })
+        return res.status(200).json({ success: true, data: diaries.sort((a,b) => new Date(a.date) - new Date(b.date)) })
     }).catch(err => console.log(err))
 }
 

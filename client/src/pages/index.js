@@ -1,6 +1,8 @@
-import DiariesList from './DiariesList'
-import DiariesInsert from './DiariesInsert'
-// import DiariesUpdate from './DiariesUpdate'
+import Home from './Home'
+import ListPage from './ListPage'
+import ChartPage from './ChartPage'
+import EntryPage from './EntryPage'
+import UpdatePage from './UpdatePage'
+import DiariesUpdate from './DiariesUpdate'
 
-// export { DiariesList, DiariesInsert, DiariesUpdate }
-export {DiariesInsert, DiariesList}
+export { Home, ListPage, ChartPage, EntryPage, UpdatePage, DiariesUpdate }
