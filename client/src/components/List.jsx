@@ -24,6 +24,7 @@ class DeleteDiary extends Component {
             window.confirm(
                 `Do tou want to delete the diary entry ${this.props.id} permanently?`,
                 // `Do tou want to delete the diary entry permanently?`,
+                
             )
         ) {
             api.deleteDiaryById(this.props.id)
