@@ -1,32 +1,8 @@
 import React, { Component } from 'react'
 import ReactTable from 'react-table'
 import api from '../api'
-
-import styled from 'styled-components'
 import 'react-table/react-table.css'
-
-
-const Wrapper = styled.div`
-    padding: 0 40px 40px 40px;
-`
-
-const Title = styled.h1.attrs({
-    className: 'h1',
-})``
-
-const SubTitle = styled.h5.attrs({
-    className: 'h5',
-})``
-
-const Update = styled.div`
-    color: #ef9b0f;
-    cursor: pointer;
-`
-
-const Delete = styled.div`
-    color: #ff0000;
-    cursor: pointer;
-`
+import {Wrapper, Title, SubTitle, Update, Delete} from '../styles'
 
 class UpdateDiary extends Component {
     updateUser = event => {
@@ -47,6 +23,7 @@ class DeleteDiary extends Component {
         if (
             window.confirm(
                 `Do tou want to delete the diary entry ${this.props.id} permanently?`,
+                // `Do tou want to delete the diary entry permanently?`,
             )
         ) {
             api.deleteDiaryById(this.props.id)
@@ -82,10 +59,6 @@ class List extends Component {
 
     render() {
         const { diaries, isLoading } = this.state
-        // console.log('PRINTING DIARIES ARRAY')
-        // console.log(diaries)
-        // console.log('PRINTING DIARIES ARRAY Length')
-        // console.log('printing diaries.data.length:' + diaries.data.length)
 
         const columns = [
             // {
@@ -119,7 +92,7 @@ class List extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <DeleteDiary id={props.original._id} />
+                            <UpdateDiary id={props.original._id} />
                         </span>
                     )
                 },
@@ -131,14 +104,12 @@ class List extends Component {
                 Cell: function(props) {
                     return (
                         <span>
-                            <UpdateDiary id={props.original._id} />
+                            <DeleteDiary id={props.original._id} />
                         </span>
                     )
                 },
             },
         ]
-        // console.log('diaries.data.length')
-        // console.log(diaries.data.data.length)
 
         let showTable = true
         if (!diaries.length) {
@@ -148,7 +119,7 @@ class List extends Component {
         return (
             <Wrapper>
                 <Title>Diary List</Title>
-                <SubTitle>List of entries in chronological order.</SubTitle>
+                <SubTitle>List of diary entries in chronological order.</SubTitle>
                 {showTable && (
                     <ReactTable
                         data={diaries}
@@ -163,5 +134,4 @@ class List extends Component {
         )
     }
 }
-
 export default List

@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import {List} from '../components'
-import 'react-table/react-table.css'
+import {Entry} from '../components'
+// import 'react-table/react-table.css'
 import {Wrapper} from '../styles'
 
-class ListPage extends Component {
+class EntryPage extends Component {
     render() {
       return (
         <Wrapper>
-          <List />
+          <Entry />
         </Wrapper>
       )
     }
 }
-export default ListPage
+export default EntryPage

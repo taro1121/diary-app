@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import {NavBar, Entry, List, Footer, NaviBar, Links, Chart} from '../components'
-import {DiariesInsert, DiariesList, DiariesUpdate, DiariesChart, Home, ListPage, ChartPage} from '../pages'
+import {NaviBar} from '../components'
+import { Home, ListPage, ChartPage, EntryPage, DiariesUpdate, UpdatePage } from '../pages'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -11,9 +11,10 @@ function App() {
             <NaviBar />
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route path="/diaries/create" exact component={DiariesInsert} />
+                    <Route path="/diaries/create" exact component={EntryPage} />
                     <Route path="/diaries/list" exact component={ListPage} />
                     <Route path="/diaries/update/:id" exact component={DiariesUpdate}/>
+                    <Route path="/diaries/up/:id" exact component={UpdatePage}/>
                     <Route path="/diaries/chart" exact component={ChartPage}/>
                 </Switch>
         </Router>

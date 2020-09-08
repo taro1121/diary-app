@@ -1,68 +1,104 @@
 import React, { Component } from 'react'
+import api from '../api'
+import {WrapperEntry, Title, SubTitle, Label, InputText, Button, CancelButton} from '../styles'
 
 class Entry extends Component {
-  render() {
-    return (
-`
-      <div>
+    constructor(props) {
+        super(props)
 
-        <h3>Enter Diary</h3>
-        <p>Enter itemized (max 140 characters) diary items (min 1 and max 6 per day) and assign evaluation value for each entry (+5 most positive and -1 most negative impct to your life).</p>
-        <form>
-          <div class="form-group">
-            <label>Date</label>
-            <input type="date" name="date" id="">
-          </div>
+        this.state = {
+            date: '',
+            item1Desc: '',
+            item1Value: ''
+        }
+    }
 
-            <div class="form-group">
-              <label>Item1</label>
-              <textarea name="" id="" rows="2" columns="100"></textarea>
-              <label>Value</label>
-              <input type="number" min="-5" max="5" step="1.0">
-        </div>
-              <div class="form-group">
-                <label>Item2</label>
-                <input type="text" name="" id="" maxlength="140" size="100">
-                  <label>Value</label>
-                  <input type="number" min="-5" max="5" step="1.0">
-        </div>
-                  <div class="form-group">
-                    <label>Item3</label>
-                    <input type="text" name="" id="" maxlength="140" size="100">
-                      <label>Value</label>
-                      <input type="number" min="-5" max="5" step="1.0">
-        </div>
-                      <div class="form-group">
-                        <label>Item4</label>
-                        <input type="text" name="" id="" maxlength="140" size="100">
-                          <label>Value</label>
-                          <input type="number" min="-5" max="5" step="1.0">
-        </div>
-                          <div class="form-group">
-                            <label>Item5</label>
-                            <input type="text" name="" id="" maxlength="140" size="100">
-                              <label>Value</label>
-                              <input type="number" min="-5" max="5" step="1.0">
-        </div>
-                              <div class="form-group">
-                                <label>Item6</label>
-                                <input type="text" name="" id="" maxlength="140" size="100">
-                                  <label>Value</label>
-                                  <input type="number" min="-5" max="5" step="1.0">
-        </div>
-                                  <button type="button" class="btn btn-primary btn-sm">Submit</button> <button type="button" class="btn btn-secondary btn-sm">Cancel</button>
-    </form>
+    handleChangeInputDate = async event => {
+        const date = event.target.value
+        this.setState({date})
+    }
 
-                                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-                                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-                                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    handleChangeInputItem1Description = async event => {
+        const item1Desc = event.target.value
+        this.setState({item1Desc})
+    }
 
-                              </div>`
+    handleChangeInputItem1Value = async event => {
+        const item1Value = event.target.value
+        // if (-5 < item1Value < 5) {
+        if ((item1Value < -5) || (item1Value > 5)) {    
+            window.alert(`Value has to be between -5.0 and +5.0`)
+            this.setState({item1Value: ''})
+        } else {
+            this.setState({item1Value})
+        }
+    }
 
+    handleIncludeDiary = async () => {
+        // if ((item1Value == '') || (item1Desc == '') || (date == '')) {
+        //     window.alert(`All three fields have to be filled.`)
+        //     this.setState(
+        //         {
+        //         date:'',
+        //         item1Desc: '',
+        //         item1Value: '',
+        //         })
+        // } else {
+            const {date, item1Desc, item1Value} = this.state
+            const payload = {date, item1Desc, item1Value}
+        // }
 
+        await api.insertDiary(payload).then(res => {
+            window.alert(`Entry inserted successfully`)
+            this.setState(
+                {
+                date:'',
+                item1Desc: '',
+                item1Value: '',
+                }
+            )
+        })
+    }
 
-    )
-  }
+    render() {
+        const {date, item1Desc, item1Value } = this.state
+
+        return (
+            <WrapperEntry>
+            <Title>Create Diary Entry</Title>
+            <SubTitle>Enter Date, Description, and Value (from -5.0 to +5.0) to represent the day.
+            </SubTitle>
+            
+            <Label>Date: </Label>
+            <InputText
+                type="date"
+                value={ date }
+                onChange={this.handleChangeInputDate}
+            />
+
+            <Label>Item1 description: </Label>
+            <InputText
+                type="text"
+                value={item1Desc}
+                onChange={this.handleChangeInputItem1Description}
+            />
+
+            <Label>Item1 value: </Label>
+            <InputText
+                type="number"
+                step="1"
+                lang="en-US"
+                min="-5.0"
+                max="+5.0"
+                // pattern="[0-9]+([,\.][0-9]+)?"
+                value={item1Value}
+                onChange={this.handleChangeInputItem1Value}
+            />
+
+            <Button onClick={this.handleIncludeDiary}>Add Entry</Button>
+            <CancelButton href={'/'}>Cancel</CancelButton>
+        </WrapperEntry>
+        )
+    }
 }
-
 export default Entry

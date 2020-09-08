@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import api from '../api'
 import {Title, SubTitle, WrapperEntry, Label, InputText, Button, CancelButton} from '../styles'
 
-class DiariesUpdate extends Component {
+class Update extends Component {
     constructor(props) {
         super(props)
 
@@ -29,11 +29,11 @@ class DiariesUpdate extends Component {
 
     handleChangeInputItem1Value = async event => {
         const item1Value = event.target.value
-        if ((item1Value < -5) || (item1Value > 5)) {    
+        if ((item1Value > 5) || (item1Value < -5)) {    
             window.alert(`Value has to be between -5 and +5`)
-            this.setState({item1Value: ''})
+            this.setState({ item1Value: '' })
         } else {
-            this.setState({item1Value})
+            this.setState({ item1Value })
         }
     }
 
@@ -69,11 +69,11 @@ class DiariesUpdate extends Component {
                 <Title>Update Diary</Title>
                 <SubTitle>Update Date, Description, and Value (from -5.0 to +5.0) to represent the day.
                 </SubTitle>
-          
+
                 <Label>Date: </Label>
                 <InputText
                     type="date"
-                    value={ date }
+                    value={date}
                     onChange={this.handleChangeInputDate}
                 />
 
@@ -89,8 +89,8 @@ class DiariesUpdate extends Component {
                     type="number"
                     step="1"
                     lang="en-US"
-                    min="-5.0"
-                    max="+5.0"
+                    min="-5"
+                    max="+5"
                     // pattern="[0-9]+([,\.][0-9]+)?"
                     value={item1Value}
                     onChange={this.handleChangeInputItem1Value}
@@ -102,4 +102,4 @@ class DiariesUpdate extends Component {
         )
     }
 }
-export default DiariesUpdate
+export default Update

@@ -1,34 +1,8 @@
 import React, { Component } from 'react'
-import ReactTable from 'react-table'
 import api from '../api'
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import {Chart, List} from '../components'
-
-import styled from 'styled-components'
 import 'react-table/react-table.css'
-
-
-const Wrapper = styled.div`
-    padding: 0 40px 40px 40px;
-`
-
-const Title = styled.h1.attrs({
-    className: 'h1',
-})``
-
-const SubTitle = styled.h5.attrs({
-    className: 'h5',
-})``
-
-const Update = styled.div`
-    color: #ef9b0f;
-    cursor: pointer;
-`
-
-const Delete = styled.div`
-    color: #ff0000;
-    cursor: pointer;
-`
+import {Wrapper, Update, Delete} from '../styles'
 
 class UpdateDiary extends Component {
     updateUser = event => {
@@ -148,5 +122,4 @@ class Home extends Component {
         )
     }
 }
-
 export default Home
