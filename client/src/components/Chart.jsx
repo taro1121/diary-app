@@ -42,6 +42,7 @@ class Chart extends Component {
                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                     <XAxis dataKey="date" />
                     <YAxis dataKey="item1Value" />
+                    {/* <YAxis /> */}
                     <Tooltip />
                   </LineChart>
                 )}

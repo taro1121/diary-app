@@ -7,7 +7,7 @@ class Update extends Component {
         super(props)
 
         this.state = {
-            id: this.props.match.params.id,
+            id: props.diary.match.params.id,
             date: '',
             item1Desc: '',
             item1Value: '',
@@ -73,14 +73,14 @@ class Update extends Component {
                 <Label>Date: </Label>
                 <InputText
                     type="date"
-                    value={date}
+                    value={this.state.date}
                     onChange={this.handleChangeInputDate}
                 />
 
                 <Label>Item1 description: </Label>
                 <InputText
                     type="text"
-                    value={item1Desc}
+                    value={this.state.item1Desc}
                     onChange={this.handleChangeInputItem1Desc}
                 />
 
@@ -92,7 +92,7 @@ class Update extends Component {
                     min="-5"
                     max="+5"
                     // pattern="[0-9]+([,\.][0-9]+)?"
-                    value={item1Value}
+                    value={this.state.item1Value}
                     onChange={this.handleChangeInputItem1Value}
                 />
 
